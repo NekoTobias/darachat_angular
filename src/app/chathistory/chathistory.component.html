@@ -1,0 +1,40 @@
+<div class="w3-card-4">
+  <header class="w3-container w3-blue">
+    <h1>Chathistory</h1>
+  </header>
+
+  <div class="maxInDiv">
+    <div id="chathistory" class="">
+      <div>
+        <ul #scrollMe class="w3-ul" [scrollTop]="scrollMe.scrollHeight">
+          <li
+            class="w3-bar  w3-hover-light-grey"
+            *ngFor="let chatmessage of chatmessages$ | async"
+          >
+            <img
+              src=""
+              class="w3-bar-item w3-circle w3-hide-small"
+              style="width:85px"
+            />
+            <div class="w3-bar-item">
+              {{chatmessage.getMessage()}}
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- <button (click)="onLog()">mmm</button> -->
+    </div>
+  </div>
+  <footer class="w3-container w3-blue">
+    <p>
+      <input
+        type="text"
+        [(ngModel)]="inputmessage"
+        (keyup.enter)="sendChatMessage(inputmessage)"
+      /><button (click)="sendChatMessage(inputmessage)">
+        Send
+      </button>
+    </p>
+  </footer>
+</div>
