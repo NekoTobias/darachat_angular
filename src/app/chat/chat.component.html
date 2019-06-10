@@ -1,7 +1,7 @@
 <div class="w3-row-padding">
   <div class="w3-padding-large">
     <div class="w3-bar w3-light-grey w3-border w3-large">
-      <a href="#" class="w3-bar-item w3-button w3-blue w3-mobile"
+      <a routerLink="/" class="w3-bar-item w3-button w3-blue w3-mobile"
         ><i class="fa fa-home"></i> Home</a
       >
       <a href="#" class="w3-bar-item w3-button w3-mobile"
@@ -13,7 +13,7 @@
       <a href="#" class="w3-bar-item w3-button w3-mobile"
         ><i class="fa fa-globe"></i> I don't know</a
       >
-      <a href="#" class="w3-bar-item w3-button w3-mobile"
+      <a href="#" (click)="logout()" class="w3-bar-item w3-button w3-mobile"
         ><i class="fa fa-sign-in"></i> Logout</a
       >
     </div>
@@ -29,7 +29,11 @@
           </header>
 
           <div class="w3-container maxInDiv">
-            ddd
+            <ul>
+              <li *ngFor="let chatter of onlineChatters | async">
+                {{chatter.username}}
+              </li>
+            </ul>
           </div>
           <footer class="w3-container w3-blue">
             <p>ddd</p>

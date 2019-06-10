@@ -1,4 +1,11 @@
-<h1>Hi {{currentUser.firstName}}!</h1>
+<h1>Hi {{currentUser.username}}!</h1>
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+  <div class="navbar-nav">
+    <a class="nav-item nav-link" routerLink="/">Home</a>
+    <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    <a class="nav-item nav-link" routerLink="/chat">CHat</a>
+  </div>
+</nav>
 <p>You're logged in with Angular 7!!</p>
 <h3>All registered users:</h3>
 <ul>

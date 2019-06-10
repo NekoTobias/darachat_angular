@@ -5,9 +5,25 @@ ul {
 }
 li {
   list-style: none;
+  padding: 0%;
 }
 
 .maxInDiv {
   max-height: 70vh;
   min-height: 70vh;
+}
+
+div {
+  word-break: break-all;
+}
+
+tr {
+  border: none;
+}
+td:nth-child(2) {
+  border-left: solid 2px lightgray;
+  text-align: left;
+}
+td:nth-child(1) {
+  width: 4vw;
 }

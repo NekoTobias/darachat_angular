@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Subscription } from "rxjs";
+import { Subscription, Observable } from "rxjs";
 import { first } from "rxjs/operators";
-
+import { Router } from "@angular/router";
 import { User } from "../../../../entity/src/User";
 import { AuthenticationService } from "../../../../services/src/authentication.service";
 import { UserService } from "../../../../services/src/user.service";
+import { SocketService } from "../../../../services/src/socket.service";
 
 @Component({ templateUrl: "home.component.html" })
 export class HomeComponent implements OnInit, OnDestroy {
@@ -14,14 +15,20 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router,
+    private socketService: SocketService
   ) {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(
       user => {
         this.currentUser = user;
       }
     );
+    this.onlineChatters = this.socketService.onUpdateOnlineChatters();
+    this.onlineChatters.subscribe();
   }
+
+  private onlineChatters: Observable<any>;
 
   ngOnInit() {
     this.loadAllUsers();
@@ -48,5 +55,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe(users => {
         this.users = users;
       });
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(["/login"]);
   }
 }

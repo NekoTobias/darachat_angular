@@ -4,17 +4,24 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { config } from "../../config";
 import { User } from "../../entity/src/User";
+import { SocketService } from "./socket.service";
 
 @Injectable({ providedIn: "root" })
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private socketService: SocketService) {
     this.currentUserSubject = new BehaviorSubject<User>(
       JSON.parse(localStorage.getItem("currentUser"))
     );
+
     this.currentUser = this.currentUserSubject.asObservable();
+    if (localStorage.getItem("currentUser") !== null) {
+      if (localStorage.getItem("currentUser").length > 0) {
+        this.currentUser.subscribe(user => this.socketService.joinChat(user));
+      }
+    }
   }
 
   public get currentUserValue(): User {
@@ -22,14 +29,6 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    console.log("ssss");
-    console.log(username);
-    console.log(password);
-    let a = this.http.post<any>(`${config.apiUrl}/users/authenticate`, {
-      username,
-      password
-    });
-    console.log(a);
     return this.http
       .post<any>(`${config.apiUrl}/users/authenticate`, { username, password })
       .pipe(

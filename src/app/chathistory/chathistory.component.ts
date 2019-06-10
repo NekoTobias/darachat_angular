@@ -12,6 +12,7 @@ import { Observable, of, BehaviorSubject } from "rxjs";
 import { MessageService } from "/services/src/message.service";
 import { tap, map } from "rxjs/operators";
 import { Message } from "/entity/src/Message";
+import { config } from "../../../config";
 
 @Component({
   selector: "app-chathistory",
@@ -22,11 +23,12 @@ export class ChathistoryComponent implements OnInit {
   @ViewChildren("commentDiv") commentDivs: QueryList<ElementRef>;
 
   chatmessages$: Observable<Message[]>;
-
+  apiUrl: any;
   inputmessage: string = "";
 
   constructor(private messageService: MessageService) {
     this.chatmessages$ = this.messageService.getMessages();
+    this.apiUrl = config.apiUrl;
   }
 
   emptyChatMessages() {

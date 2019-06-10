@@ -8,17 +8,25 @@
       <div>
         <ul #scrollMe class="w3-ul" [scrollTop]="scrollMe.scrollHeight">
           <li
-            class="w3-bar  w3-hover-light-grey"
+            class="w3-row w3-hover-light-grey"
             *ngFor="let chatmessage of chatmessages$ | async"
           >
-            <img
-              src=""
-              class="w3-bar-item w3-circle w3-hide-small"
-              style="width:85px"
-            />
-            <div class="w3-bar-item">
-              {{chatmessage.getMessage()}}
-            </div>
+            <table class="w3-table">
+              <tr>
+                <td class="">
+                  <img
+                    [src]="apiUrl+chatmessage.sender.currentavatar"
+                    class="w3-circle w3-hide-small"
+                    style="width:4vw"
+                  />
+                </td>
+                <td class="w3-rest w3-left-align">
+                  <div class="w3-left-align">
+                    {{chatmessage.getMessage()}}
+                  </div>
+                </td>
+              </tr>
+            </table>
           </li>
         </ul>
       </div>

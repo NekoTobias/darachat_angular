@@ -1,11 +1,11 @@
 export class Message {
   constructor(
     private text: string,
-    private sender: string,
+    private sender: any,
     private timestamp: string
   ) {}
 
   public getMessage(): string {
-    return `${this.sender}: ${this.text}`;
+    return `${this.sender.username}: ${this.text}`;
   }
 }
