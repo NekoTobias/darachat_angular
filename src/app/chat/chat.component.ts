@@ -18,10 +18,23 @@ export class ChatComponent implements OnInit {
   ) {
     this.onlineChatters = this.socketService.onUpdateOnlineChatters();
     this.onlineChatters.subscribe();
+
+    this.currentroom = this.socketService.onUpdateCurrentRoom();
+    this.currentroom.subscribe();
+
+    this.roomLists = this.socketService.onRoomLists();
+    this.roomLists.subscribe();
   }
 
   private onlineChatters: Observable<any>;
+  private currentroom: Observable<any>;
+  private roomLists: Observable<any>;
+
   ngOnInit() {}
+
+  changeRoom(roomid: number) {
+    this.socketService.changeRoom(roomid);
+  }
 
   logout() {
     this.authenticationService.logout();

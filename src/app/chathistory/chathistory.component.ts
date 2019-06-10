@@ -9,9 +9,8 @@ import {
 } from "@angular/core";
 
 import { Observable, of, BehaviorSubject } from "rxjs";
-import { MessageService } from "/services/src/message.service";
-import { tap, map } from "rxjs/operators";
-import { Message } from "/entity/src/Message";
+import { MessageService } from "../../../services/src/message.service";
+import { Message } from "../../../entity/src/Message";
 import { config } from "../../../config";
 
 @Component({

@@ -2,13 +2,15 @@
   "name": "angular12",
   "version": "0.0.0",
   "license": "MIT",
+  "tsConfig": "tsconfig.app.json",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "now-build": "ng build --prod  --output-path dist"
   },
   "private": true,
   "dependencies": {

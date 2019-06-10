@@ -3,7 +3,6 @@ import { Message } from "entity/src/Message";
 import { Injectable } from "@angular/core";
 import { SocketService } from "./socket.service";
 import { Observable, BehaviorSubject } from "rxjs";
-import { tap, map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"

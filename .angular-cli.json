@@ -7,6 +7,7 @@
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
+      "tsConfig": "tsconfig.app.json",
       "prefix": "app",
       "styles": ["styles.css"],
       "scripts": [],

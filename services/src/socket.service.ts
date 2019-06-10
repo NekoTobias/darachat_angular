@@ -26,11 +26,35 @@ export class SocketService {
     this.socket.emit("joinChat", user);
   }
 
+  public changeRoom(roomid: number) {
+    this.socket.emit("changeroom", roomid);
+  }
+
   public onUpdateOnlineChatters(): Observable<any> {
     return new Observable<any>(observer => {
       this.socket.on("updateOnlineChatters", (chatters: any) => {
         console.log(chatters);
         observer.next(chatters);
+        // observer.next(Object.assign(new Chatter("", "", ""), message));
+      });
+    });
+  }
+
+  public onUpdateCurrentRoom(): Observable<any> {
+    return new Observable<any>(observer => {
+      this.socket.on("updateCurrentRoom", (room: any) => {
+        console.log(room);
+        observer.next(room);
+        // observer.next(Object.assign(new Chatter("", "", ""), message));
+      });
+    });
+  }
+
+  public onRoomLists(): Observable<any> {
+    return new Observable<any>(observer => {
+      this.socket.on("getRooms", (room: any) => {
+        console.log(room);
+        observer.next(room);
         // observer.next(Object.assign(new Chatter("", "", ""), message));
       });
     });
