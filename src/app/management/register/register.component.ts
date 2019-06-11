@@ -6,7 +6,10 @@ import { first } from "rxjs/operators";
 import { UserService } from "../../../../services/src/user.service";
 import { AuthenticationService } from "../../../../services/src/authentication.service";
 
-@Component({ templateUrl: "register.component.html" })
+@Component({
+  templateUrl: "./register.component.html",
+  styleUrls: ["./register.component.css"]
+})
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;
@@ -16,9 +19,8 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private userService: UserService
-  ) //private alertService: AlertService
-  {
+    private userService: UserService //private alertService: AlertService
+  ) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(["/"]);
@@ -27,8 +29,9 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      firstName: ["", Validators.required],
-      lastName: ["", Validators.required],
+      //firstName: ["", Validators.required],
+      //lastName: ["", Validators.required],
+      email: ["", Validators.required],
       username: ["", Validators.required],
       password: ["", [Validators.required, Validators.minLength(6)]]
     });
