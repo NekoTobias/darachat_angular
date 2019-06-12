@@ -1,16 +1,29 @@
-<h1>Hi {{currentUser.username}}!</h1>
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+<div class="w3-container w3-half w3-margin-top centered w3-card-4">
+  <h1>Hi {{currentUser.username}}!</h1>
+  <!-- <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
   <div class="navbar-nav">
-    <a class="nav-item nav-link" routerLink="/">Home</a>
+    <!-- <a class="nav-item nav-link" routerLink="/">Home</a> 
     <a class="nav-item nav-link" (click)="logout()">Logout</a>
     <a class="nav-item nav-link" routerLink="/chat">CHat</a>
   </div>
-</nav>
-<p>You're logged in with Angular 7!!</p>
+</nav> -->
+  <!-- <p>You're logged in with Angular 7!!</p>
 <h3>All registered users:</h3>
 <ul>
   <li *ngFor="let user of users">
     {{user.username}} ({{user.firstName}} {{user.lastName}}) -
     <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
   </li>
-</ul>
+</ul> -->
+  <a
+    class="btn btn-primary w3-button w3-section w3-teal w3-ripple"
+    (click)="logout()"
+    >Logout</a
+  >
+  <div></div>
+  <a
+    class="btn btn-primary w3-button w3-section w3-teal w3-ripple"
+    routerLink="/chat"
+    >Chat</a
+  >
+</div>

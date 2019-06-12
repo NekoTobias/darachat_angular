@@ -7,7 +7,10 @@ import { AuthenticationService } from "../../../../services/src/authentication.s
 import { UserService } from "../../../../services/src/user.service";
 import { SocketService } from "../../../../services/src/socket.service";
 
-@Component({ templateUrl: "home.component.html" })
+@Component({
+  templateUrl: "home.component.html",
+  styleUrls: ["./home.component.css"]
+})
 export class HomeComponent implements OnInit, OnDestroy {
   currentUser: User;
   currentUserSubscription: Subscription;

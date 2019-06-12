@@ -16,6 +16,9 @@ export class ChatComponent implements OnInit {
     private router: Router,
     private socketService: SocketService
   ) {
+    let a = this.authenticationService.currentUserValue;
+    this.socketService.joinChat(a);
+
     this.onlineChatters = this.socketService.onUpdateOnlineChatters();
     this.onlineChatters.subscribe();
 
@@ -31,6 +34,10 @@ export class ChatComponent implements OnInit {
   private roomLists: Observable<any>;
 
   ngOnInit() {}
+  ngDoCheck() {}
+  ngOnDestroy() {
+    this.socketService.leaveChat();
+  }
 
   changeRoom(roomid: number) {
     this.socketService.changeRoom(roomid);

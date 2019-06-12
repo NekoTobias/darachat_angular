@@ -9,9 +9,16 @@ import { User } from "../../entity/src/User";
   providedIn: "root"
 })
 export class SocketService {
+  leaveChat(): any {
+    this.socket.emit("leaveChat");
+  }
   private socket: any = socketIo(`${config.apiUrl}`);
   sendMessage(message: Message) {
     this.socket.emit("sendMessage", message);
+  }
+
+  joinChat2(user: User) {
+    this.socket.emit("joinChat2", user);
   }
 
   public onReceiveMessage(): Observable<Message> {

@@ -19,7 +19,7 @@ export class AuthenticationService {
     this.currentUser = this.currentUserSubject.asObservable();
     if (localStorage.getItem("currentUser") !== null) {
       if (localStorage.getItem("currentUser").length > 0) {
-        this.currentUser.subscribe(user => this.socketService.joinChat(user));
+        //this.currentUser.subscribe(user => this.socketService.joinChat(user));
       }
     }
   }
