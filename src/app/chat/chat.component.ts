@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { AuthenticationService } from "../../../services/src/authentication.service";
 import { Observable } from "rxjs";
 import { SocketService } from "../../../services/src/socket.service";
-
+import { config } from "../../../config";
 @Component({
   selector: "app-chat",
   templateUrl: "./chat.component.html",
@@ -16,6 +16,8 @@ export class ChatComponent implements OnInit {
     private router: Router,
     private socketService: SocketService
   ) {
+    this.apiUrl = config.apiUrl;
+
     let a = this.authenticationService.currentUserValue;
     this.socketService.joinChat(a);
 
@@ -32,6 +34,8 @@ export class ChatComponent implements OnInit {
   private onlineChatters: Observable<any>;
   private currentroom: Observable<any>;
   private roomLists: Observable<any>;
+
+  private apiUrl: any;
 
   ngOnInit() {}
   ngDoCheck() {}
